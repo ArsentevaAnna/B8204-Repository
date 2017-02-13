@@ -19,8 +19,8 @@
 
 Примечения от los-romka:
 * Для того, чтобы git работал с github.com необходимо прописать прокси командой:
-los-romk$ git config http.proxy proxy.dvfu.ru:3128
-* Также для идентификации себя необходимо указать пользователя, под которым вы будете выполнять коммиты:
-$ git config user.email "your_email@example.com"
-$ git config user.username "your_name"
+los-romk$ git config --global http.proxy proxy.dvfu.ru:3128
+* Также для идентификации себя необходимо указать пользователя, под которым вы будете выполнять коммиты(--global для установки значений в глобальной конфигурации):
+$ git config --global user.email "your_email@example.com"
+$ git config --global user.username "your_name"
 
