@@ -7,7 +7,7 @@
 /* 
  * File:   newtestrunner.cpp
  * Author: КОНСТАНТИН
- * 
+ *   
  * Created on 18.04.2017, 20:50:30
  */
 

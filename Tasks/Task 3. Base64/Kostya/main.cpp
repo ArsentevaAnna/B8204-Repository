@@ -1,5 +1,5 @@
 #include "Base.h"
- 
+  
 using namespace std;
 
 char Base64::getSymbolBase64FromASCII(int p)
