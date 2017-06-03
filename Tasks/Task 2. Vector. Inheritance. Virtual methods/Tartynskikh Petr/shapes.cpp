@@ -202,6 +202,7 @@ public:
 					result->add(*(temp->vect[k]));
 			}
 		}
+		delete temp;
 		return result;
 	}
 
