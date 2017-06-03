@@ -2,10 +2,15 @@
 #define HEADER_H
 
 #include <map>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
 
 using namespace std;
 
-class Shape {
+class Shape 
+{
 public:
 
     int type;
@@ -14,7 +19,8 @@ public:
     virtual void print() = 0;
 };
 
-class ShapesProcessor {
+class ShapesProcessor 
+{
 private:
 
     vector<Shape*> vec;

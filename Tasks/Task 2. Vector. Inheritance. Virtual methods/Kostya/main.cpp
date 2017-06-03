@@ -134,16 +134,18 @@ ShapesProcessor ShapesProcessor::sameSquareType()
     for (auto i = vec.begin(), end = vec.end(); i != end; i++)
     {
         tmp.clear();
-        for (auto j = vec.begin(); j != i + 1; j++)
+        for (auto j = vec.begin(), t = i + 1; j != t; j++)
         {
-            if ((Squares[i - vec.begin()] == Squares[j - vec.begin()]) && (((i == j) || (*i)->type != (*j)->type)))
-            {
-                tmp.add(**j);
-            }
+            if (Squares[i - vec.begin()] == Squares[j - vec.begin()]) tmp.add(**j);
         }
         if (tmp.vec.size() > res.vec.size()) res = tmp;
     }
-    return res;
+    map<int, Shape*> p;
+    tmp.clear();
+    for (Shape* i : res.vec) p[i->type] = i;
+    for (auto i = p.begin(), end = p.end(); i != end; i++) tmp.add(*i->second);
+    if(tmp.vec.size() == 1) tmp.clear();
+    return tmp;
 }
 
 void ShapesProcessor::print()
@@ -153,19 +155,5 @@ void ShapesProcessor::print()
 
 int main()
 {
-    Square S1(2);
-    Rectangle S2(4, 3.14);
-    Circle S3(2);
-    Circle S4(2);
-
-    ShapesProcessor Shapes;
-
-    Shapes.add(S1);
-    Shapes.add(S2);
-    Shapes.add(S3);
-    Shapes.add(S4);
-    Shapes.maxSquare()->print();
-    cout << "___" << endl;
-    Shapes.sameSquareType().print();
     return 0;
 }
