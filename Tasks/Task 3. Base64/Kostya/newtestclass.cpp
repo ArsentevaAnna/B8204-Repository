@@ -34,19 +34,58 @@ void newtestclass::tearDown()
 {
 }
 
-void newtestclass::testBase64ToText()
+void newtestclass::testTextToBase64()
 {
-    string my = "";
-    my+=(unsigned char) (rand() % 255);
-    Base64 base64;
-    srand(time(NULL));
-    string result = base64.Base64ToText(base64.TextToBase64(my));
-    for (int i = 0; i < 100; i++)
-    {
-        CPPUNIT_ASSERT(!strcmp(my.c_str(), result.c_str()));
-        CPPUNIT_ASSERT(strcmp(base64.TextToBase64(my), base64.Base64ToText(base64.TextToBase64(my)) );
-        my += (unsigned char) rand() % 255;
-        result = base64.Base64ToText(base64.TextToBase64(my));
-    }
+    string input = TextToBase64("Hello, World!");
+	string output = "SGVsbG8sIFdvcmxkIQ==";
+	CPPUNIT_ASSERT(!strcmp(input, output)); 
+    input = TextToBase64("1");
+	output = "MQ==";
+	CPPUNIT_ASSERT(!strcmp(input, output));
+    input = TextToBase64("12");
+	output = "MTI=";
+    CPPUNIT_ASSERT(!strcmp(input, output));
+    input = TextToBase64("123");
+	output = "MTIz";
+    CPPUNIT_ASSERT(!strcmp(input, output));
+    input = TextToBase64("1234");
+	output = "MTIzNA==";
+    CPPUNIT_ASSERT(!strcmp(input, output));
+    input = TextToBase64("12345");
+    output = "MTIzNDU=";
+    CPPUNIT_ASSERT(!strcmp(input, output));
+    input = TextToBase64("123456");
+	output = "MTIzNDU2";
+    CPPUNIT_ASSERT(!strcmp(input, output));
+    input = TextToBase64("");
+	output = "";
+	CPPUNIT_ASSERT(!strcmp(input, output));
 }
 
+void newtestclass::testBase64ToText()
+{
+    string input = Base64ToText("SGVsbG8sIFdvcmxkIQ==");
+	string output = "Hello, World!";
+	CPPUNIT_ASSERT(!strcmp(input, output)); 
+    input = Base64ToText("MQ==");
+    output = "1";
+    CPPUNIT_ASSERT(!strcmp(input, output)); 
+    input = Base64ToText("MTI=");
+	output = "12";
+    CPPUNIT_ASSERT(!strcmp(input, output));
+    input = Base64ToText("MTIz");
+	output = "123";
+    CPPUNIT_ASSERT(!strcmp(input, output));
+    input = Base64ToText("MTIzNA==");
+	output = "1234";
+    CPPUNIT_ASSERT(!strcmp(input, output));
+    input = Base64ToText("MTIzNDU=");
+	output = "12345";
+    CPPUNIT_ASSERT(!strcmp(input, output));
+    input = Base64ToText("MTIzNDU2");
+	output = "123456";
+    CPPUNIT_ASSERT(!strcmp(input, output));
+    input = Base64ToText("");
+	output = "";
+    CPPUNIT_ASSERT(!strcmp(input, output));
+}
