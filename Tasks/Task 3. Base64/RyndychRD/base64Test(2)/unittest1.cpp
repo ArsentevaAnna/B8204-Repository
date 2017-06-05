@@ -115,5 +115,16 @@ namespace Base64LibUnitTest
 			std::string test = Base64::decodeBase64("YWJjZGVm");
 			Assert::AreEqual(expected, test);
 		}
+		TEST_METHOD(error_decodeBase64)
+		{
+			try{
+				std::string test = Base64::decodeBase64("***");
+			}
+			catch (std::string e)
+			{
+				Assert::IsTrue;
+			}
+			Assert::IsFalse	;
+		}
 	};
 }
