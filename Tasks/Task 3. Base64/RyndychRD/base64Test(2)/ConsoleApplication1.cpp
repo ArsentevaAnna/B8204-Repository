@@ -116,9 +116,16 @@ string Base64::decodeBase64(string inStr) {
 	if (inStr == "") {
 		return "";
 	}
+	
 	if (inStr.length() * 6 % 8 != 0) {
-		return "Error in count of simb base64";
+		throw "Error in count of simb base64";
 	}
+	for(int i =0;i<inStr.length();i++){
+		if(base64ToNum(inStr[i])==-1){
+			throw "Error in symbol";
+		}
+	}
+	
 	int count = countToDelete(inStr);
 	inStr = convert(inStr);
 	outStr = codeBit8(inStr, count);
