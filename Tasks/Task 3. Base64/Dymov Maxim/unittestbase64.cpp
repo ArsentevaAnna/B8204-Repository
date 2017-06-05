@@ -135,5 +135,10 @@ namespace UnitTestsBase64
 			string output = "";
 			Assert::AreEqual(input, output);
 		}
+		
+		TEST_METHOD(TestMethod16)
+ 		{
+ 			CPPUNIT_ASSERT_THROW( Base64decode("ЩЩЩЩЩЩ"), InvalidArgument);
+ 		}
 	};
 }
