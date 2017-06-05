@@ -5,13 +5,6 @@
 #include <string.h>
 #include "ShapeProc.h"
 using namespace std;
-float Shape::getSquare() {
-	return 0;
-}
-string Shape::getType() {
-	return "Error";
-}
-
 
 Rectangle ::Rectangle(float inX, float inY) {
 	this->x = inX;
