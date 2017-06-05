@@ -5,8 +5,8 @@ using namespace std;
 const float pi314 = 3.14;
 class Shape {
 public:
-	virtual float getSquare();
-	virtual string getType();
+	virtual getSquare();
+	virtual getType();
 };
 class Rectangle : public Shape {
 	float x;
