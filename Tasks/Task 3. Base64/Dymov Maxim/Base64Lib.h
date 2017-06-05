@@ -11,3 +11,5 @@ public:
 
 	static string BASE64Encode(string input);
 };
+
+class InvalidArgument{};
