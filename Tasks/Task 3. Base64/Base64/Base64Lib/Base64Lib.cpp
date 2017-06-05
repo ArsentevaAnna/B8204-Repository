@@ -38,14 +38,8 @@ std::string Base64::decode(std::string input) {
 	uchar UTF8code;
 	uchar B64code[4];
 	std::string output;
-	try {
 		if (length % 4 != 0)
-			throw "Длина входной строки должна быть кратна 4";
-	}
-	catch (const char* i) {
-		std::cout << i << std::endl;
-		return "";
-	}
+			throw std::exception();
 	for (size_t i = 0; i < length; i += 4) {
 		B64code[0] = (uchar)Base64::CODES.find(input[i]);
 		B64code[1] = (uchar)Base64::CODES.find(input[i + 1]);
