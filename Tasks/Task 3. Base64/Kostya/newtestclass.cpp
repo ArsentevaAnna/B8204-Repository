@@ -44,8 +44,8 @@ void newtestclass::testBase64ToText()
     for (int i = 0; i < 100; i++)
     {
         CPPUNIT_ASSERT(!strcmp(my.c_str(), result.c_str()));
-        my += (unsigned char) rand() % 255;
         CPPUNIT_ASSERT(strcmp(base64.TextToBase64(my), base64.Base64ToText(base64.TextToBase64(my)) );
+        my += (unsigned char) rand() % 255;
         result = base64.Base64ToText(base64.TextToBase64(my));
     }
 }
