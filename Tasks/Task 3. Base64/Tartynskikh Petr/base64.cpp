@@ -79,68 +79,57 @@ string Base64decode(string str)
 	char char_array_4[4], char_array_3[3];
 	string result;
 
-	try 
+	for (int i = 0; i < str.length(); i++)
 	{
-		for (int i = 0; i < str.length(); i++)
+		if (convertable(str[i]) == false)
 		{
-			if (convertable(str[i]) == false)
-			{
-				throw 1;
-			}
+			throw 1;
 		}
-		while (str_length-- && (str[in_] != '=') && convertable(str[in_]))
+	}
+	while (str_length-- && (str[in_] != '=') && convertable(str[in_]))
+	{
+		char_array_4[i++] = str[in_];
+		in_++;
+		if (i == 4)
 		{
-			char_array_4[i++] = str[in_];
-			in_++;
-			if (i == 4)
+			for (i = 0; i < 4; i++)
 			{
-				for (i = 0; i < 4; i++)
-				{
-					char_array_4[i] = letters.find(char_array_4[i]);
-				}
-
-				//Îáðàòíàÿ ìàãèÿ
-				char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-				char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
-				char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
-
-				for (i = 0; (i < 3); i++)
-				{
-					result += char_array_3[i];
-					//cout << result << endl;
-				}
-
-				i = 0;
+				char_array_4[i] = letters.find(char_array_4[i]);
 			}
-		}
-
-		if (i)
-		{
-			for (j = i; j < 4; j++)
-			{
-				char_array_4[j] = 0;
-			}
-
-			for (j = 0; j < 4; j++)
-			{
-				char_array_4[j] = letters.find(char_array_4[j]);
-			}
-
-			//Åùå íåìíîãî îáðàòíîé ìàãèè
+			//Îáðàòíàÿ ìàãèÿ
 			char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
 			char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
 			char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
-
-			for (j = 0; (j < i - 1); j++)
+			for (i = 0; (i < 3); i++)
 			{
-				result += char_array_3[j];
+				result += char_array_3[i];
 				//cout << result << endl;
 			}
+		i = 0;
 		}
-		return result;
 	}
-	catch (int exception)
+
+	if (i)
 	{
-		cout<<"Wrong symbol"<<endl;
+		for (j = i; j < 4; j++)
+		{
+			char_array_4[j] = 0;
+		}
+
+		for (j = 0; j < 4; j++)
+		{
+			char_array_4[j] = letters.find(char_array_4[j]);
+		}
+
+		//Åùå íåìíîãî îáðàòíîé ìàãèè
+		char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
+		char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
+		char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
+		for (j = 0; (j < i - 1); j++)
+		{
+			result += char_array_3[j];
+			//cout << result << endl;
+		}
 	}
+	return result;
 }
