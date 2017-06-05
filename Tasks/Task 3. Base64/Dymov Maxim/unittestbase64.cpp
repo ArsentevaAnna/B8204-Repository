@@ -137,11 +137,8 @@ namespace UnitTestsBase64
 		}
 		
 		TEST_METHOD(TestMethod16)
-		{
-			// [DECODE] wrong input
-			string input = Base64::BASE64Decode("Ъ");
-			string output = "";
-			Assert::AreEqual(input, output);
-		}
+ 		{
+ 			CPPUNIT_ASSERT_THROW(InvalidArgument, Base64decode("ЩЩЩЩЩЩ"))
+ 		}
 	};
 }
