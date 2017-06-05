@@ -19,6 +19,12 @@ string Base64::BASE64Decode(string input)
 	{
 		if (input[i] != '=')
 		{
+			if ((Base64::CODE64LIST.find(input[i]) < Base64::CODE64LIST.size()) == false)
+				throw new InvalidArgument;
+		}
+		
+		if (input[i] != '=')
+		{
 			if ((i % 4) == 0)
 			{
 				bitsContainer.reset();
