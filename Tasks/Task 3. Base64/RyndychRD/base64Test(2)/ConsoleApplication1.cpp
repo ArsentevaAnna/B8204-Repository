@@ -118,11 +118,11 @@ string Base64::decodeBase64(string inStr) {
 	}
 	
 	if (inStr.length() * 6 % 8 != 0) {
-		throw "Error in count of simb base64";
+		throw logic_error("Error in count of simb base64");
 	}
 	for(int i =0;i<inStr.length();i++){
 		if(base64ToNum(inStr[i])==-1){
-			throw "Error in symbol";
+			throw logic_error("Error in symbol");
 		}
 	}
 	
