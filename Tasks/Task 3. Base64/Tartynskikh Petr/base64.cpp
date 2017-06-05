@@ -7,7 +7,7 @@ using namespace std;
 const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 
-bool convertable(char c) //Проверка на переводимость из base64 на человеческий
+bool convertable(char c) //ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГҐГ°ГҐГўГ®Г¤ГЁГ¬Г®Г±ГІГј ГЁГ§ base64 Г­Г  Г·ГҐГ«Г®ГўГҐГ·ГҐГ±ГЄГЁГ©
 {
 	return (isalnum(c) || (c == '+') || (c == '/'));
 }
@@ -24,9 +24,9 @@ string Base64encode(string _str) {
 	while (str_length--)
 	{
 		char_array_3[i++] = *(str++);
-		if (i == 3) //Берем из строки по 3 символа
+		if (i == 3) //ГЃГҐГ°ГҐГ¬ ГЁГ§ Г±ГІГ°Г®ГЄГЁ ГЇГ® 3 Г±ГЁГ¬ГўГ®Г«Г 
 		{
-			//Магия
+			//ГЊГ ГЈГЁГї
 			char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
 			char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
 			char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
@@ -42,14 +42,14 @@ string Base64encode(string _str) {
 		}
 	}
 
-	if (i) //Если количество букв не делится на 3 (то есть остались еще буквы)
+	if (i) //Г…Г±Г«ГЁ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЎГіГЄГў Г­ГҐ Г¤ГҐГ«ГЁГІГ±Гї Г­Г  3 (ГІГ® ГҐГ±ГІГј Г®Г±ГІГ Г«ГЁГ±Гј ГҐГ№ГҐ ГЎГіГЄГўГ»)
 	{
 		for (j = i; j < 3; j++)
 		{
 			char_array_3[j] = '\0';
 		}
 
-		//Еще магия
+		//Г…Г№ГҐ Г¬Г ГЈГЁГї
 		char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
 		char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
 		char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
@@ -79,55 +79,68 @@ string Base64decode(string str)
 	char char_array_4[4], char_array_3[3];
 	string result;
 
-	while (str_length-- && (str[in_] != '=') && convertable(str[in_]))
+	try 
 	{
-		char_array_4[i++] = str[in_];
-		in_++;
-		if (i == 4)
+		for (int i = 0; i < str.length(); i++)
 		{
-			for (i = 0; i < 4; i++)
+			if (convertable(str[i]) == false)
 			{
-				char_array_4[i] = letters.find(char_array_4[i]);
+				throw 1;
+			}
+		}
+		while (str_length-- && (str[in_] != '=') && convertable(str[in_]))
+		{
+			char_array_4[i++] = str[in_];
+			in_++;
+			if (i == 4)
+			{
+				for (i = 0; i < 4; i++)
+				{
+					char_array_4[i] = letters.find(char_array_4[i]);
+				}
+
+				//ГЋГЎГ°Г ГІГ­Г Гї Г¬Г ГЈГЁГї
+				char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
+				char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
+				char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
+
+				for (i = 0; (i < 3); i++)
+				{
+					result += char_array_3[i];
+					//cout << result << endl;
+				}
+
+				i = 0;
+			}
+		}
+
+		if (i)
+		{
+			for (j = i; j < 4; j++)
+			{
+				char_array_4[j] = 0;
 			}
 
-			//Обратная магия
+			for (j = 0; j < 4; j++)
+			{
+				char_array_4[j] = letters.find(char_array_4[j]);
+			}
+
+			//Г…Г№ГҐ Г­ГҐГ¬Г­Г®ГЈГ® Г®ГЎГ°Г ГІГ­Г®Г© Г¬Г ГЈГЁГЁ
 			char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
 			char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
 			char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
 
-			for (i = 0; (i < 3); i++)
+			for (j = 0; (j < i - 1); j++)
 			{
-				result += char_array_3[i];
+				result += char_array_3[j];
 				//cout << result << endl;
 			}
-
-			i = 0;
 		}
+		return result;
 	}
-
-	if (i)
+	catch (int exception)
 	{
-		for (j = i; j < 4; j++)
-		{
-			char_array_4[j] = 0;
-		}
-
-		for (j = 0; j < 4; j++)
-		{
-			char_array_4[j] = letters.find(char_array_4[j]);
-		}
-
-		//Еще немного обратной магии
-		char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-		char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
-		char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
-
-		for (j = 0; (j < i - 1); j++)
-		{
-			result += char_array_3[j];
-			//cout << result << endl;
-		}
+		cout<<"Wrong symbol"<<endl;
 	}
-
-	return result;
 }
