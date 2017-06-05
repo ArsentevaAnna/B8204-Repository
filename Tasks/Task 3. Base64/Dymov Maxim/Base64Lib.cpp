@@ -17,6 +17,20 @@ string Base64::BASE64Decode(string input)
 
 	for (int i = 0; i < lengthInput; i++)
 	{
+		try 
+			{
+				if (input[i] != '=')
+				{
+					if ((code64list.find(input[i]) < code64list.size()) == false)
+					throw input[i];
+				}
+			}
+			catch (char letter)
+			{
+				cout << "Not find symbol: " << letter << endl;
+				return "";
+			}
+		
 		if (input[i] != '=')
 		{
 			if ((i % 4) == 0)
