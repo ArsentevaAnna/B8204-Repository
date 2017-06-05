@@ -88,4 +88,7 @@ void newtestclass::testBase64ToText()
     input = Base64ToText("");
 	output = "";
     CPPUNIT_ASSERT(!strcmp(input, output));
+	input = Base64ToText("ФШДАРЛОАФ");
+	output = "";
+    CPPUNIT_ASSERT(!strcmp(input, output));
 }
