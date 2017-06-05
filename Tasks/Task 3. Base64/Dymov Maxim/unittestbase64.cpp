@@ -138,7 +138,7 @@ namespace UnitTestsBase64
 		
 		TEST_METHOD(TestMethod16)
  		{
- 			CPPUNIT_ASSERT_THROW(InvalidArgument, Base64decode("ЩЩЩЩЩЩ"))
+ 			CPPUNIT_ASSERT_THROW( Base64decode("ЩЩЩЩЩЩ"), InvalidArgument);
  		}
 	};
 }
