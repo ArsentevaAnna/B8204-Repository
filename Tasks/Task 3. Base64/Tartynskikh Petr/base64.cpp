@@ -83,7 +83,7 @@ string Base64decode(string str)
 	{
 		if (convertable(str[i]) == false)
 		{
-			throw new InvalidValue;
+			throw new InvalidArgument;
 		}
 	}
 	while (str_length-- && (str[in_] != '=') && convertable(str[in_]))
