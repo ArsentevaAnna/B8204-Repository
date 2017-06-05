@@ -52,10 +52,9 @@ namespace Base64LibUnitTest
 
 		TEST_METHOD(decode2)
 		{
-			std::string expected = "";
 			Base64 testClass;
-			std::string test = testClass.decode("a");
-			Assert::AreEqual(expected, test);
+			auto func = [this] { testClass.decode("a"); };
+			Assert::ExpecteException< std::exception>(func);
 		}
 
 		TEST_METHOD(decode3)
