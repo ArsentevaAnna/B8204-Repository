@@ -21,7 +21,7 @@ string Base64::BASE64Decode(string input)
 			{
 				if (input[i] != '=')
 				{
-					if ((code64list.find(input[i]) < code64list.size()) == false)
+					if ((Base64::CODE64LIST.find(input[i]) < Base64::CODE64LIST.size()) == false)
 					throw input[i];
 				}
 			}
