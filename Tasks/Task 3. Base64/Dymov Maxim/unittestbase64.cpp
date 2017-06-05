@@ -135,5 +135,13 @@ namespace UnitTestsBase64
 			string output = "";
 			Assert::AreEqual(input, output);
 		}
+		
+		TEST_METHOD(TestMethod16)
+		{
+			// [DECODE] wrong input
+			string input = Base64::BASE64Decode("Ъ");
+			string output = "";
+			Assert::AreEqual(input, output);
+		}
 	};
 }
