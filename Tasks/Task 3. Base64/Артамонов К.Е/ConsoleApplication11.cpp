@@ -1,4 +1,4 @@
-// ConsoleApplication11.cpp: определяет точку входа для консольного приложения.
+// ConsoleApplication11.cpp: Г®ГЇГ°ГҐГ¤ГҐГ«ГїГҐГІ ГІГ®Г·ГЄГі ГўГµГ®Г¤Г  Г¤Г«Гї ГЄГ®Г­Г±Г®Г«ГјГ­Г®ГЈГ® ГЇГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї.
 //
 
 #include "stdafx.h"
@@ -55,7 +55,7 @@ public:
 		string out;
 
 		if (length % 4 != 0) {
-				return "";
+				throw exception();
 			}
 		for (size_t i = 0; i < length; i += 4) {
 			Base64code[0] = (unsigned char)code.find(input[i]);
