@@ -137,7 +137,7 @@ namespace UnitTestsBase64
 		}
 		TEST_METHOD(TestMethod16)
 		{
-			CPPUNIT_ASSERT_THROW(1, Base64decode("ЛОЛТЕСТ"))
+			CPPUNIT_ASSERT_THROW(InvalidArgument, Base64decode("ЛОЛТЕСТ"))
 		}
 	};
 }
